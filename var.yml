@@ -1,0 +1,16 @@
+---
+- hosts: local
+  vars: 
+    inv_file: /home/kadri/ansible/play-books/var/inv.txt
+  tasks:
+    - name: create file
+      file:
+        path: "{{inv_file}}"
+        state: touch
+    - name: generate inventory
+      lineinfile:
+        path: "{{inv_file}}"
+        line: "{{ groups['server2']|join(' ') }}"
+
+
+
